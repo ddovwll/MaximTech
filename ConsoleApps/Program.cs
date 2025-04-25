@@ -1,3 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ConsoleApps.Tasks;
 
-Console.WriteLine("Hello, World!");
+var input = Console.ReadLine()!;
+var result = StringReverse.Reverse(input);
+Console.WriteLine(result);
