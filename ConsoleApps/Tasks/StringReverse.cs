@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
+using ConsoleApps.Tasks.Helpers;
 
 namespace ConsoleApps.Tasks;
 
@@ -9,7 +10,11 @@ public static class StringReverse
     private static readonly Regex InappropriateSymbols = new("[^a-z]");
     private static readonly Regex SubstringBand = new("[aeiouy].*[aeiouy]");
 
-    public static (string reversed, string repetitions, string substringInBand) Reverse(string input)
+    public static (string reversed, string repetitions, string substringInBand, string sorted)
+        Reverse(
+            string input,
+            SortType sortType
+        )
     {
         if (!LatinLowerCase.IsMatch(input))
         {
@@ -21,7 +26,9 @@ public static class StringReverse
         var reversed = ProcessReverse(input);
         var repetitions = Repetitions(reversed);
         var substringInBand = SubstringInBand(reversed);
-        return (reversed, repetitions, substringInBand);
+        var chars = reversed.ToCharArray();
+        Sort(chars, sortType);
+        return (reversed, repetitions, substringInBand, string.Concat(chars));
     }
 
     private static string ProcessReverse(string input)
@@ -52,13 +59,34 @@ public static class StringReverse
             stringBuilder.Append(group.Value);
             stringBuilder.Append("; ");
         }
-        
+
         return stringBuilder.ToString();
     }
-    
+
     private static string SubstringInBand(string input)
     {
-        var matches = SubstringBand.Matches(input); 
+        var matches = SubstringBand.Matches(input);
         return string.Concat(matches.Select(m => m.Value));
     }
+
+    private static void Sort(char[] input, SortType sortType)
+    {
+        switch (sortType)
+        {
+            case SortType.QuickSort:
+                QuickSort.Sort(input, 0, input.Length - 1);
+                break;
+            case SortType.TreeSort:
+                TreeSort.Sort(input);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(sortType), sortType, null);
+        }
+    }
+}
+
+public enum SortType
+{
+    QuickSort,
+    TreeSort
 }
