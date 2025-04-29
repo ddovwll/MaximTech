@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using ConsoleApps.Tasks.Helpers;
+using ConsoleApps.Tasks.Infrastructure;
 
 namespace ConsoleApps.Tasks;
 
@@ -10,7 +11,7 @@ public static class StringReverse
     private static readonly Regex InappropriateSymbols = new("[^a-z]");
     private static readonly Regex SubstringBand = new("[aeiouy].*[aeiouy]");
 
-    public static (string reversed, string repetitions, string substringInBand, string sorted)
+    public static async Task<(string reversed, string repetitions, string substringInBand, string sorted, string trimmed)>
         Reverse(
             string input,
             SortType sortType
@@ -28,7 +29,8 @@ public static class StringReverse
         var substringInBand = SubstringInBand(reversed);
         var chars = reversed.ToCharArray();
         Sort(chars, sortType);
-        return (reversed, repetitions, substringInBand, string.Concat(chars));
+        var trimmed = await Trim(reversed);
+        return (reversed, repetitions, substringInBand, string.Concat(chars), trimmed);
     }
 
     private static string ProcessReverse(string input)
@@ -82,6 +84,12 @@ public static class StringReverse
             default:
                 throw new ArgumentOutOfRangeException(nameof(sortType), sortType, null);
         }
+    }
+
+    private static async Task<string> Trim(string input)
+    {
+        var removementIndex = await RandomNumberGenerator.GetRandomNumberAsync(input.Length);
+        return input.Remove(removementIndex, 1);
     }
 }
 
