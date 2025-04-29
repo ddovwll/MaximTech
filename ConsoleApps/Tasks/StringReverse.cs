@@ -7,8 +7,9 @@ public static class StringReverse
 {
     private static readonly Regex LatinLowerCase = new("^[a-z]+$");
     private static readonly Regex InappropriateSymbols = new("[^a-z]");
+    private static readonly Regex SubstringBand = new("[aeiouy].*[aeiouy]");
 
-    public static (string reversed, string repetitions) Reverse(string input)
+    public static (string reversed, string repetitions, string substringInBand) Reverse(string input)
     {
         if (!LatinLowerCase.IsMatch(input))
         {
@@ -19,7 +20,8 @@ public static class StringReverse
 
         var reversed = ProcessReverse(input);
         var repetitions = Repetitions(reversed);
-        return (reversed, repetitions);
+        var substringInBand = SubstringInBand(reversed);
+        return (reversed, repetitions, substringInBand);
     }
 
     private static string ProcessReverse(string input)
@@ -52,5 +54,11 @@ public static class StringReverse
         }
         
         return stringBuilder.ToString();
+    }
+    
+    private static string SubstringInBand(string input)
+    {
+        var matches = SubstringBand.Matches(input); 
+        return string.Concat(matches.Select(m => m.Value));
     }
 }
