@@ -1,9 +1,16 @@
-﻿namespace ConsoleApps.Tasks.Helpers;
+﻿using MaximTech.Domain.Contracts;
 
-public static class TreeSort
+namespace MaximTech.Application.Services.Sort;
+
+public class TreeSort : ISort
 {
-    public static void Sort(char[] array)
+    public void Sort(char[] array)
     {
+        if (array.Length == 0)
+        {
+            return;
+        }
+        
         var root = new TreeNode(array[0]);
 
         for (var i = 1; i < array.Length; i++)
