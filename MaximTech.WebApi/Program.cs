@@ -1,8 +1,8 @@
 using MaximTech.Application.Contracts;
 using MaximTech.Application.Services;
+using MaximTech.Application.Services.Sort;
 using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
-using MaximTech.Infrastructure.Services.Sort;
 using Microsoft.Extensions.Options;
 using RandomNumberGenerator = MaximTech.Infrastructure.Services.RandomNumberGenerator;
 
