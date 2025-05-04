@@ -6,6 +6,11 @@ public class TreeSort : ISort
 {
     public void Sort(char[] array)
     {
+        if (array.Length == 0)
+        {
+            return;
+        }
+        
         var root = new TreeNode(array[0]);
 
         for (var i = 1; i < array.Length; i++)

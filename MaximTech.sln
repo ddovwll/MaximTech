@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximTech.WebApi", "MaximTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximTech.Domain", "MaximTech.Domain\MaximTech.Domain.csproj", "{F9F0781A-5AE2-4576-AD66-AF7C41F1A8F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximTech.Tests", "MaximTech.Tests\MaximTech.Tests.csproj", "{7D59DBD7-A191-4C53-83C6-C2FCB0BB3B50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F9F0781A-5AE2-4576-AD66-AF7C41F1A8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F0781A-5AE2-4576-AD66-AF7C41F1A8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F0781A-5AE2-4576-AD66-AF7C41F1A8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D59DBD7-A191-4C53-83C6-C2FCB0BB3B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D59DBD7-A191-4C53-83C6-C2FCB0BB3B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D59DBD7-A191-4C53-83C6-C2FCB0BB3B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D59DBD7-A191-4C53-83C6-C2FCB0BB3B50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
