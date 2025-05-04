@@ -1,7 +1,7 @@
 using MaximTech.Application.Contracts;
 using MaximTech.Application.Services;
+using MaximTech.Application.Services.Sort;
 using MaximTech.Domain.Contracts;
-using MaximTech.Infrastructure.Services.Sort;
 using RandomNumberGenerator = MaximTech.Infrastructure.Services.RandomNumberGenerator;
 
 var builder = WebApplication.CreateBuilder(args);
