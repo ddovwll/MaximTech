@@ -10,14 +10,20 @@ public class StringProcessService
     private static readonly Regex LatinLowerCase = new("^[a-z]+$");
     private static readonly Regex InappropriateSymbols = new("[^a-z]");
     private static readonly Regex SubstringBand = new("[aeiouy].*[aeiouy]");
-    
+
     private readonly IRandomNumberGenerator _randomNumberGenerator;
     private readonly ISortFactory _sortFactory;
+    private readonly Settings _settings;
 
-    public StringProcessService(IRandomNumberGenerator randomNumberGenerator, ISortFactory sortFactory)
+    public StringProcessService(
+        IRandomNumberGenerator randomNumberGenerator,
+        ISortFactory sortFactory,
+        Settings settings
+    )
     {
         _randomNumberGenerator = randomNumberGenerator;
         _sortFactory = sortFactory;
+        _settings = settings;
     }
 
     public async Task<(string reversed, string repetitions, string substringInBand, string sorted, string trimmed)>
@@ -26,6 +32,11 @@ public class StringProcessService
             SortType sortType
         )
     {
+        if (_settings.BlackList.Contains(input))
+        {
+            throw new ArgumentException($"Строка: {input} находится в черном списке");
+        }
+        
         if (!LatinLowerCase.IsMatch(input))
         {
             var matches = InappropriateSymbols.Matches(input);
