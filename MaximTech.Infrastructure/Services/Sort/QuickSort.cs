@@ -1,8 +1,15 @@
-﻿namespace ConsoleApps.Tasks.Helpers;
+﻿using MaximTech.Domain.Contracts;
 
-public static class QuickSort
+namespace MaximTech.Infrastructure.Services.Sort;
+
+public class QuickSort : ISort
 {
-    public static void Sort(char[] array, int l, int r)
+    public void Sort(char[] array)
+    {
+        Sort(array, 0, array.Length - 1);
+    }
+    
+    private static void Sort(char[] array, int l, int r)
     {
         var stack = new Stack<(int, int)>();
         stack.Push((l, r));

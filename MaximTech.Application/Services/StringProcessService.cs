@@ -1,18 +1,27 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
-using ConsoleApps.Tasks.Helpers;
-using ConsoleApps.Tasks.Infrastructure;
+using MaximTech.Application.Contracts;
+using MaximTech.Domain.Models;
 
-namespace ConsoleApps.Tasks;
+namespace MaximTech.Application.Services;
 
-public static class StringReverse
+public class StringProcessService
 {
     private static readonly Regex LatinLowerCase = new("^[a-z]+$");
     private static readonly Regex InappropriateSymbols = new("[^a-z]");
     private static readonly Regex SubstringBand = new("[aeiouy].*[aeiouy]");
+    
+    private readonly IRandomNumberGenerator _randomNumberGenerator;
+    private readonly ISortFactory _sortFactory;
 
-    public static async Task<(string reversed, string repetitions, string substringInBand, string sorted, string trimmed)>
-        Reverse(
+    public StringProcessService(IRandomNumberGenerator randomNumberGenerator, ISortFactory sortFactory)
+    {
+        _randomNumberGenerator = randomNumberGenerator;
+        _sortFactory = sortFactory;
+    }
+
+    public async Task<(string reversed, string repetitions, string substringInBand, string sorted, string trimmed)>
+        ProcessString(
             string input,
             SortType sortType
         )
@@ -71,30 +80,15 @@ public static class StringReverse
         return string.Concat(matches.Select(m => m.Value));
     }
 
-    private static void Sort(char[] input, SortType sortType)
+    private void Sort(char[] input, SortType sortType)
     {
-        switch (sortType)
-        {
-            case SortType.QuickSort:
-                QuickSort.Sort(input, 0, input.Length - 1);
-                break;
-            case SortType.TreeSort:
-                TreeSort.Sort(input);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(sortType), sortType, null);
-        }
+        var sortAlgorithm = _sortFactory.GetSortAlgorithm(sortType);
+        sortAlgorithm.Sort(input);
     }
 
-    private static async Task<string> Trim(string input)
+    private async Task<string> Trim(string input)
     {
-        var removementIndex = await RandomNumberGenerator.GetRandomNumberAsync(input.Length);
+        var removementIndex = await _randomNumberGenerator.GetRandomNumberAsync(input.Length);
         return input.Remove(removementIndex, 1);
     }
-}
-
-public enum SortType
-{
-    QuickSort,
-    TreeSort
 }
