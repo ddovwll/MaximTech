@@ -1,6 +1,6 @@
 ﻿using MaximTech.Domain.Contracts;
 
-namespace MaximTech.Infrastructure.Services.Sort;
+namespace MaximTech.Application.Services.Sort;
 
 public class TreeSort : ISort
 {

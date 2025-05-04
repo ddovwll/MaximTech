@@ -1,8 +1,8 @@
 ﻿using MaximTech.Application.Contracts;
 using MaximTech.Application.Services;
+using MaximTech.Application.Services.Sort;
 using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
-using MaximTech.Infrastructure.Services.Sort;
 using MaximTech.Tests.Mocks;
 
 namespace MaximTech.Tests.Test;
