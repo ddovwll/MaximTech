@@ -2,7 +2,7 @@
 using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
 
-namespace MaximTech.Infrastructure.Services.Sort;
+namespace MaximTech.Application.Services.Sort;
 
 public class SortFactory : ISortFactory
 {

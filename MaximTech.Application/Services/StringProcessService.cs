@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using MaximTech.Application.Contracts;
+using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
 
 namespace MaximTech.Application.Services;
