@@ -3,6 +3,7 @@ using MaximTech.Application.Services;
 using MaximTech.Application.Services.Sort;
 using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
+using MaximTech.WebApi.Middlewares;
 using Microsoft.Extensions.Options;
 using RandomNumberGenerator = MaximTech.Infrastructure.Services.RandomNumberGenerator;
 
@@ -35,5 +36,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<RateLimiterMiddleware>();
 
 app.Run();
