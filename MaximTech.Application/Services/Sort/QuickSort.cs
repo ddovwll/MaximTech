@@ -6,9 +6,14 @@ public class QuickSort : ISort
 {
     public void Sort(char[] array)
     {
+        if (array.Length == 0)
+        {
+            return;
+        }
+
         Sort(array, 0, array.Length - 1);
     }
-    
+
     private static void Sort(char[] array, int l, int r)
     {
         var stack = new Stack<(int, int)>();

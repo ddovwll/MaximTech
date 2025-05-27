@@ -1,5 +1,4 @@
-﻿using MaximTech.Application.Contracts;
-using MaximTech.Domain.Contracts;
+﻿using MaximTech.Domain.Contracts;
 using MaximTech.Domain.Models;
 
 namespace MaximTech.Application.Services.Sort;
